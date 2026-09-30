@@ -193,17 +193,6 @@ const swapWords = [...heroSwap.children];
 const answer = swapWords[swapWords.length - 1];
 const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 let swapWidths = [];
-const heroCta = document.querySelector('.hero-cta');
-
-function nudgeCta() {
-  if (heroCta.matches(':hover, :focus')) return;
-  heroCta.classList.remove('is-nudging');
-  heroCta.offsetWidth;
-  heroCta.classList.add('is-nudging');
-}
-// Both arrows end where they started, so dropping the class after the copy lands is seamless.
-heroCta.addEventListener('animationend', (event) => { if (event.animationName === 'cta-in') heroCta.classList.remove('is-nudging'); });
-
 function fitHeroSwap() {
   // If the widest word would push "solution." onto its own line, keep it there for every word so the heading never reflows mid-loop.
   const width = heroSwap.style.width;
@@ -238,9 +227,7 @@ async function runHeroSwap() {
   heroSwap.offsetWidth;
   heroSwap.style.transition = answer.style.transition = '';
   for (;;) {
-    await wait(700); // let the highlight finish, then point to the next step
-    nudgeCta();
-    await wait(4100);
+    await wait(4800);
     answer.classList.remove('is-marked');
     await wait(600);
     answer.classList.replace('is-in', 'is-out');
