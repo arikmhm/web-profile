@@ -358,7 +358,8 @@ h1 mark { display:inline-block; color:var(--ink); background:linear-gradient(var
 h1.is-stacked em { display:block; }
 
 /* Corner arrows (.cta-arrow): one copy flies out to the top right while the other flies in from the bottom left.
-   At rest the swap repeats every few seconds; on hover it keeps going, faster. .hover-only (footer) only moves on hover. */
+   At rest the swap repeats every few seconds; hovering plays it once, and leaving picks the loop back up.
+   .hover-only (footer) only moves on hover. Both copies end looking like the start, so no state is kept. */
 .cta-button { display:inline-flex; align-items:center; gap:28px; margin-top:30px; padding:14px 19px; background:var(--ink); color:white; font-size:12px; font-weight:500; transition:background .2s; }
 .cta-button:hover { background:#44463d; }
 .cta-arrow { display:grid; flex-shrink:0; overflow:hidden; }
@@ -367,8 +368,8 @@ h1.is-stacked em { display:block; }
 @media (prefers-reduced-motion:no-preference) {
   :is(a,button):not(:hover):not(:focus-visible) .cta-arrow:not(.hover-only) .arrow-icon:first-child { animation:arrow-loop-out 3.6s cubic-bezier(.65,0,.35,1) infinite; }
   :is(a,button):not(:hover):not(:focus-visible) .cta-arrow:not(.hover-only) .arrow-icon:last-child { animation:arrow-loop-in 3.6s cubic-bezier(.65,0,.35,1) infinite; }
-  :is(a,button):is(:hover,:focus-visible) .cta-arrow .arrow-icon:first-child { animation:cta-out .9s cubic-bezier(.65,0,.35,1) infinite; }
-  :is(a,button):is(:hover,:focus-visible) .cta-arrow .arrow-icon:last-child { animation:cta-in .9s cubic-bezier(.65,0,.35,1) infinite; }
+  :is(a,button):is(:hover,:focus-visible) .cta-arrow .arrow-icon:first-child { animation:cta-out .7s cubic-bezier(.65,0,.35,1); }
+  :is(a,button):is(:hover,:focus-visible) .cta-arrow .arrow-icon:last-child { animation:cta-in .7s cubic-bezier(.65,0,.35,1); }
 }
 @keyframes arrow-loop-out { 0% { transform:none; } 14%,100% { transform:translate(120%,-120%); } }
 @keyframes arrow-loop-in { 0%,5% { transform:translate(-120%,120%); } 20%,100% { transform:none; } }
